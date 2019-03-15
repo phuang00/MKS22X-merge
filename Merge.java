@@ -25,28 +25,49 @@ public class Merge{
     mergeH(tempLo, lo, lo + tempLo.length - 1);
     mergeH(tempHi, lo + tempLo.length, hi);
     merge(data, tempLo, tempHi);
+    System.out.println(Arrays.toString(data));
   }
 
   private static void merge(int[] data, int[] tempLo, int[] tempHi){
-    int lo = 0;
-    int hi = 0;
+    int l = 0;
+    int h = 0;
     for (int i = 0; i < data.length; i++){
-      if (hi >= tempHi.length || tempLo[lo] < tempHi[hi]){
-        data[i] = tempLo[lo];
-        lo++;
+      if (!(l >= tempLo.length && h >= tempHi.length)){
+        /*System.out.println("lo" + Arrays.toString(tempLo));
+        System.out.println("hi" + Arrays.toString(tempHi));
+        System.out.println("l" + l);
+        System.out.println("h" + h);
+        System.out.println("i" + i);
+        System.out.println(data.length);
+        System.out.println("dat" + Arrays.toString(data));
+        System.out.println(l >= tempLo.length || (h < tempHi.length && tempLo[l] > tempHi[h]));
+        */
+        if (l >= tempLo.length || (h < tempHi.length && tempLo[l] > tempHi[h])){
+          //System.out.println("AHHHH");
+          data[i] = tempHi[h];
+          h++;
+          //System.out.println("dataa" + Arrays.toString(data));
+        }
+        else{
+          //System.out.println("BOOOO");
+          data[i] = tempLo[l];
+          l++;
+        }
       }
-      else if (lo < tempLo.length){
-        data[i] = tempHi[hi];
-        hi++;
+      else{
+        i--;
       }
     }
   }
 
   public static void main(String[] args) {
     int[] ary = new int[] {3,5,2,6,31,6,23,2,54,64,25,4};
+    int[] arys = new int[] {3,5,2,6,31,6,23,2,54,64,25,4};
     System.out.println(Arrays.toString(ary));
     mergesort(ary);
     System.out.println(Arrays.toString(ary));
+    Arrays.sort(arys);
+    System.out.println(Arrays.toString(arys));
   }
 
 }
