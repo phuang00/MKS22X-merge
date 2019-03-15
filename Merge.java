@@ -87,7 +87,7 @@ public class Merge{
   private static void merge(int[] data, int[] temp, int loLo, int loHi, int hiLo, int hiHi){
     int l = loLo;
     int h = hiLo;
-    for (int i = loLo; i < data.length; i++){
+    for (int i = loLo; i <= hiHi; i++){
         if (l > loHi || (h <= hiHi && temp[l] > temp[h])){
           //System.out.println("AHHHH");
           data[i] = temp[h];
