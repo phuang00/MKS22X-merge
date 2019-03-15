@@ -22,6 +22,8 @@ public class Merge{
     }
     System.out.print(Arrays.toString(tempLo));
     System.out.println(Arrays.toString(tempHi));
+    mergeH(tempLo, lo, lo + tempLo.length - 1);
+    mergeH(tempHi, lo + tempLo.length, hi);
   }
 
   public static void main(String[] args) {
