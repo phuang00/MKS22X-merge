@@ -3,7 +3,12 @@ import java.util.*;
 public class Merge{
 
   public static void mergesort(int[] data){
-    mergeH(data, 0, data.length - 1);
+    int[] temp = new int[data.length];
+    for (int i = 0; i < data.length; i++){
+      temp[i] = data[i];
+    }
+    mergesort(data, temp, 0, data.length -1);
+    //mergeH(data, 0, data.length - 1);
   }
 
   private static void mergeH(int[] data, int lo, int hi){
@@ -56,6 +61,30 @@ public class Merge{
           i--;
         }
     }
+  }
+
+  private static void mergesort(int[] data, int[] temp, int lo, int hi){
+    if (lo >= hi){
+      return;
+    }
+    int loLo = lo;
+    int loHi = (hi - lo)/2 + lo;
+    int hiLo = loHi + 1;
+    int hiHi = hi;
+
+    //System.out.println("lolo " + loLo);
+    //System.out.println("lohi " + loHi);
+    //System.out.println("hilo " + hiLo);
+    //System.out.println("hihi " + hiHi);
+
+
+    mergesort(temp, data, loLo, loHi);
+    mergesort(temp, data, hiLo, hiHi);
+    merge(data,temp, loLo, loHi, hiLo, hiHi);
+
+  }
+
+  private static void merge(int[] data, int[] temp, int loLo, int loHi, int hiLo, int hiHi){
   }
 
   public static void main(String[]args){
