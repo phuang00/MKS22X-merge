@@ -20,12 +20,12 @@ public class Merge{
         tempHi[i - tempLo.length] = data[i];
       }
     }
-    System.out.print(Arrays.toString(tempLo));
-    System.out.println(Arrays.toString(tempHi));
+    //System.out.print(Arrays.toString(tempLo));
+    //System.out.println(Arrays.toString(tempHi));
     mergeH(tempLo, lo, lo + tempLo.length - 1);
     mergeH(tempHi, lo + tempLo.length, hi);
     merge(data, tempLo, tempHi);
-    System.out.println(Arrays.toString(data));
+    //System.out.println(Arrays.toString(data));
   }
 
   private static void merge(int[] data, int[] tempLo, int[] tempHi){
