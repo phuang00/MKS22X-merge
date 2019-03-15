@@ -85,6 +85,24 @@ public class Merge{
   }
 
   private static void merge(int[] data, int[] temp, int loLo, int loHi, int hiLo, int hiHi){
+    int l = loLo;
+    int h = hiLo;
+    for (int i = loLo; i < data.length; i++){
+        if (l > loHi || (h <= hiHi && temp[l] > temp[h])){
+          //System.out.println("AHHHH");
+          data[i] = temp[h];
+          h++;
+          //System.out.println("dataa" + Arrays.toString(data));
+        }
+        else if (h > loHi || (l <= hiHi && temp[l] <= temp[h])){
+          //System.out.println("BOOOO");
+          data[i] = temp[l];
+          l++;
+        }
+        else{
+          i--;
+        }
+    }
   }
 
   public static void main(String[]args){
