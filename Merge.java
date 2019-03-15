@@ -24,12 +24,29 @@ public class Merge{
     System.out.println(Arrays.toString(tempHi));
     mergeH(tempLo, lo, lo + tempLo.length - 1);
     mergeH(tempHi, lo + tempLo.length, hi);
+    merge(data, tempLo, tempHi);
+  }
+
+  private static void merge(int[] data, int[] tempLo, int[] tempHi){
+    int lo = 0;
+    int hi = 0;
+    for (int i = 0; i < data.length; i++){
+      if (hi >= tempHi.length || tempLo[lo] < tempHi[hi]){
+        data[i] = tempLo[lo];
+        lo++;
+      }
+      else if (lo < tempLo.length){
+        data[i] = tempHi[hi];
+        hi++;
+      }
+    }
   }
 
   public static void main(String[] args) {
     int[] ary = new int[] {3,5,2,6,31,6,23,2,54,64,25,4};
     System.out.println(Arrays.toString(ary));
     mergesort(ary);
+    System.out.println(Arrays.toString(ary));
   }
 
 }
