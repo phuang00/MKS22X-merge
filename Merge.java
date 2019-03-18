@@ -7,16 +7,20 @@ public class Merge{
     for (int i = 0; i < data.length; i++){
       temp[i] = data[i];
     }
+    // copy data into a temp array
     mergesort(data, temp, 0, data.length -1);
+    // call helper method
     //mergeH(data, 0, data.length - 1);
   }
 
   private static void mergeH(int[] data, int lo, int hi){
     if (lo >= hi){
+      // if the lower limit is less than upper bound, exit out of method
       return;
     }
     int[] tempLo = new int[(hi - lo + 1)/2];
     int[] tempHi = new int[hi - lo + 1 - tempLo.length];
+    // create two temporary arrays by splitting into the middle
     for (int i = 0; i <= hi - lo; i++){
       if (i < tempLo.length){
         tempLo[i] = data[i];
@@ -25,18 +29,25 @@ public class Merge{
         tempHi[i - tempLo.length] = data[i];
       }
     }
+    // copy values from data to the new arrays
+
     //System.out.print(Arrays.toString(tempLo));
     //System.out.println(Arrays.toString(tempHi));
     mergeH(tempLo, lo, lo + tempLo.length - 1);
     mergeH(tempHi, lo + tempLo.length, hi);
+    // call method itself on both temp arrays
     merge(data, tempLo, tempHi);
+    //merge the temp arrays together into data
     //System.out.println(Arrays.toString(data));
   }
 
   private static void merge(int[] data, int[] tempLo, int[] tempHi){
     int l = 0;
+    // l = current index of tempLo
     int h = 0;
+    // h = current index of tempHi
     for (int i = 0; i < data.length; i++){
+      // for every index in data
         /*System.out.println("lo" + Arrays.toString(tempLo));
         System.out.println("hi" + Arrays.toString(tempHi));
         System.out.println("l" + l);
@@ -47,18 +58,25 @@ public class Merge{
         System.out.println(l >= tempLo.length || (h < tempHi.length && tempLo[l] > tempHi[h]));
         */
         if (l >= tempLo.length || (h < tempHi.length && tempLo[l] > tempHi[h])){
+          // if l is out of bounds or h is in bounds and
+          // the value at index l of tempLo is less than the value at index h of tempHi,
           //System.out.println("AHHHH");
           data[i] = tempHi[h];
+          // add value at index h of tempH to data and increase index h by one
           h++;
           //System.out.println("dataa" + Arrays.toString(data));
         }
         else if (h >= tempLo.length || (l < tempHi.length && tempLo[l] <= tempHi[h])){
+          // else if h is out of bounds or l is in bounds and tempLo[l] is less than or equal to tempHi[h]
           //System.out.println("BOOOO");
           data[i] = tempLo[l];
+          // add value at index l of tempLo to data and increase index l by one
           l++;
         }
         else{
+          // else
           i--;
+          // decrease i by one
         }
     }
   }
