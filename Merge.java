@@ -83,42 +83,58 @@ public class Merge{
 
   private static void mergesort(int[] data, int[] temp, int lo, int hi){
     if (lo >= hi){
+      // if lower bound is less than or equal to upper bound, exit out of method
       return;
     }
     int loLo = lo;
+    // loLo = lower bound of the first half of data
     int loHi = (hi - lo)/2 + lo;
+    // loHi = upper bound of the first half of data
     int hiLo = loHi + 1;
+    // hiLo = lower bound of second half of data
     int hiHi = hi;
+    // hiHi = upper bound of second half of data
 
     //System.out.println("lolo " + loLo);
     //System.out.println("lohi " + loHi);
     //System.out.println("hilo " + hiLo);
     //System.out.println("hihi " + hiHi);
 
-
     mergesort(temp, data, loLo, loHi);
     mergesort(temp, data, hiLo, hiHi);
+    // call method itself on both halves of data to split temp (by swapping temp and data)
     merge(data,temp, loLo, loHi, hiLo, hiHi);
+    // merge the two halves from temp into data
 
   }
 
   private static void merge(int[] data, int[] temp, int loLo, int loHi, int hiLo, int hiHi){
     int l = loLo;
+    // l = current index of lower half of temp
     int h = hiLo;
+    // h = current index of upper half of temp
     for (int i = loLo; i <= hiHi; i++){
+      // for every index between the lower bound of the first half and the upper bound of second half (inclusive)
         if (l > loHi || (h <= hiHi && temp[l] > temp[h])){
+          // if l is out of bounds (greater than the upper bound of the first half),
+          // or h is in bounds and value at index l of temp is less than index h of temp
           //System.out.println("AHHHH");
           data[i] = temp[h];
+          // add value at index h of temp into data and increase index h by one
           h++;
           //System.out.println("dataa" + Arrays.toString(data));
         }
-        else if (h > loHi || (l <= hiHi && temp[l] <= temp[h])){
+        else if (h > loHi || (l <= loHi && temp[l] <= temp[h])){
+          // else if h is out of bounds (higher than upper bound of the second half)
+          // or l is in bounds and value at index l of temp is less than or equal to value at index h of temp
           //System.out.println("BOOOO");
           data[i] = temp[l];
+          // add value at index l into data and increase l by one
           l++;
         }
         else{
           i--;
+          // else decrease i by one
         }
     }
   }
