@@ -66,17 +66,12 @@ public class Merge{
           h++;
           //System.out.println("dataa" + Arrays.toString(data));
         }
-        else if (h >= tempLo.length || (l < tempHi.length && tempLo[l] <= tempHi[h])){
-          // else if h is out of bounds or l is in bounds and tempLo[l] is less than or equal to tempHi[h]
+        else{
+          // else
           //System.out.println("BOOOO");
           data[i] = tempLo[l];
           // add value at index l of tempLo to data and increase index l by one
           l++;
-        }
-        else{
-          // else
-          i--;
-          // decrease i by one
         }
     }
   }
@@ -124,17 +119,12 @@ public class Merge{
           h++;
           //System.out.println("dataa" + Arrays.toString(data));
         }
-        else if (h > loHi || (l <= loHi && temp[l] <= temp[h])){
-          // else if h is out of bounds (higher than upper bound of the second half)
-          // or l is in bounds and value at index l of temp is less than or equal to value at index h of temp
+        else{
+          // else
           //System.out.println("BOOOO");
           data[i] = temp[l];
           // add value at index l into data and increase l by one
           l++;
-        }
-        else{
-          i--;
-          // else decrease i by one
         }
     }
   }
