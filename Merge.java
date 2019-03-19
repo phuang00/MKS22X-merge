@@ -77,10 +77,10 @@ public class Merge{
   }
 
   private static void mergesort(int[] data, int[] temp, int lo, int hi){
-    if (lo >= hi){
+    /*if (lo >= hi){
       // if lower bound is greater than or equal to upper bound, exit out of method
       return;
-    }
+    }*/
     if (hi - lo < 50){
       insertionsort(data, lo, hi);
       return;
