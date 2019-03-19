@@ -78,7 +78,11 @@ public class Merge{
 
   private static void mergesort(int[] data, int[] temp, int lo, int hi){
     if (lo >= hi){
-      // if lower bound is less than or equal to upper bound, exit out of method
+      // if lower bound is greater than or equal to upper bound, exit out of method
+      return;
+    }
+    if (hi - lo < 60){
+      insertionsort(data, lo, hi);
       return;
     }
     int loLo = lo;
@@ -126,6 +130,24 @@ public class Merge{
           // add value at index l into data and increase l by one
           l++;
         }
+    }
+  }
+
+  private static void insertionsort(int[] data, int lo, int hi){
+    for (int i = lo + 1; i <= hi; i++){
+      int temp = data[i];
+      boolean fixed = false;
+      int index = i - 1;
+      while (!fixed){
+        if (index < lo || data[index] < temp){
+          data[index + 1] = temp;
+          fixed = true;
+        }
+        else{
+          data[index + 1] = data[index];
+          index--;
+        }
+      }
     }
   }
 
