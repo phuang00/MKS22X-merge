@@ -81,7 +81,7 @@ public class Merge{
       // if lower bound is greater than or equal to upper bound, exit out of method
       return;
     }*/
-    if (hi - lo < 50){
+    if (hi - lo < 43){
       insertionsort(data, lo, hi);
       return;
     }
